@@ -6,7 +6,7 @@ export const Wildfire_item = ({info}) => {
     <View style={styles.itemContainer}>
     <Text style={[styles.textBase,{ textAlign: 'right'}]}>{info.Fecha} - {info.Hr_Inicio}</Text>
     <Text style={[styles.textBase]}>Responsable: {info.responsable}</Text>
-    <Text style={[styles.textBase,{ fontSize:"25"}]}>{info.CVE_INC}</Text>
+    <Text style={[styles.textBase,{ fontSize:25}]}>{info.CVE_INC}</Text>
     <Text style={[styles.textBase]}>CoordX: {info.CoordX}, CoordY: {info.CoordY}, Altitud:{info.Altitud}</Text>
     <Text style={[styles.textBase]}>{info.Estado} - {info.Municipio}</Text>
     </View>

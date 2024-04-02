@@ -1,0 +1,42 @@
+[
+    {
+        "CDR": "C01",
+        "Cob_HER": 0,
+        "Cob_HOJ": 0,
+        "Cob_SUE": 95,
+        "Cob_ROE": 5,
+        "Cob_CEN": 0,
+        "CobSev_0": 0,
+        "CobSev_1": 0,
+        "CobSev_2": 0,
+        "CobSev_3": 5,
+        "CobSev_4": 5,
+        "CobSev_5": 90,
+        "Prof_HOJ": 0,
+        "Prof_FER": 0,
+        "Prof_CEN": 0,
+        "Prof_PHP": 0,
+        "Prof_PHQ": 0,
+        "Observaciones": "Nada xD"
+    },
+    {
+        "CDR": "C02",
+        "Cob_HER": 0,
+        "Cob_HOJ": 0,
+        "Cob_SUE": 95,
+        "Cob_ROE": 5,
+        "Cob_CEN": 0,
+        "CobSev_0": 0,
+        "CobSev_1": 0,
+        "CobSev_2": 0,
+        "CobSev_3": 5,
+        "CobSev_4": 5,
+        "CobSev_5": 90,
+        "Prof_HOJ": 0,
+        "Prof_FER": 0,
+        "Prof_CEN": 0,
+        "Prof_PHP": 0,
+        "Prof_PHQ": 0,
+        "Observaciones": "Nada xD"
+    }
+]
