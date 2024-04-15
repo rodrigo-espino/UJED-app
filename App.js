@@ -5,19 +5,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import { FS1 } from "./screens/FS1";
 import { FS2_1 } from "./screens/FS2_1";
+import FS3  from './screens/FS3'
 import { initializeDatabase } from "./components/LocalDB/DB";
 import * as FileSystem from 'expo-file-system';
+import FS3_form from "./screens/FS3_form";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-function FS1Drawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="FS1" component={FS1}/>
-      {/* Añade aquí más pantallas si necesitas */}
-    </Drawer.Navigator>
-  );
-}
 
 // Stack Navigator específico para FS1 que incluye el Drawer
 function FS1Stack() {
@@ -30,7 +23,8 @@ function FS1Stack() {
     <Drawer.Navigator>
       <Drawer.Screen name="FS1" component={FS1}/>
       <Drawer.Screen name="FS2" component={FS2_1}/>
-
+      <Drawer.Screen name="FS3" component={FS3}/>
+      <Drawer.Screen name="FS3_form" component={FS3_form}/>
       {/* Añade aquí más pantallas si necesitas */}
     </Drawer.Navigator>
   );
