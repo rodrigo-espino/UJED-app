@@ -35,36 +35,43 @@ const TableCreationDB = [
     );`,
 
   `CREATE TABLE IF NOT EXISTS FES2 (
-    id int PRIMARY KEY,
-    FES1_ID varchar(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    FEST1_ID varchar(10)
     );`,
 
   `CREATE TABLE IF NOT EXISTS FES2_TR (
-    id int PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     FES2_ID int,
     TR int,
-    Pino int,
-    Encino int,
-    Otros int,
-    H int,
-    Pendiente int
+    Pino1 int,
+    Encino1 int,
+    Otros1 int,
+    Pino10 int,
+    Encino10 int,
+    Otros10 int,
+    Pino100 int,
+    Encino100 int,
+    Otros100 int,
+    Pendiente float
     );`,
 
   `CREATE TABLE FES2_3 (
-    id int PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     FEST2_ID int,
-    Tipo varchar(255),
-    No int,
-    Value float
+   TR int,
+    SSP varchar(255),
+    DAP float,
+    PDR varchar(255)
+
     );`,
 
   `CREATE TABLE FES3 (
-    id int PRIMARY KEY,
-    FEST1_ID varchar(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    FEST1_ID varchar(10)
     );`,
 
   `CREATE TABLE FES3_2 (
-        id int PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
         FEST3_ID int,
         CDR varchar(255),
         Cob_HER int,
@@ -87,36 +94,37 @@ const TableCreationDB = [
       );`,
 
   ` CREATE TABLE FES4 (
-        id int PRIMARY KEY,
-        FEST1_ID varchar(255)
-      );`,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    FEST1_ID varchar(10)
+    
+    );`,
 
   `CREATE TABLE FES4_2 (
-        id int PRIMARY KEY,
-        FES4_ID int,
-        Subsitio int,
-        No int,
-        Genero_Especie varchar(255),
-        FRE int,
-        CAP int,
-        TIR varchar(255),
-        Cob_SBQ int,
-        Cob_REG int,
-        Cob_HER int,
-        Cob_HOJ int,
-        Cob_SUE int,
-        Cob_ROE int,
-        HHT float,
-        Observaciones varchar(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    FES4_ID int,
+    Subsitio int,
+    No int,
+    Genero_Especie varchar(255),
+    FRE int,
+    CAP int,
+    TIR varchar(255),
+    Cob_SBQ int,
+    Cob_REG int,
+    Cob_HER int,
+    Cob_HOJ int,
+    Cob_SUE int,
+    Cob_ROE int,
+    HHT float,
+    Observaciones varchar(255)
       );`,
 
   `CREATE TABLE FES5 (
-        id int PRIMARY KEY,
-        FEST1_ID varchar(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+        FEST1_ID varchar(10)
       );`,
 
   `CREATE TABLE FES5_2(
-        id int PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
         FES5_ID int,
         No int,
         Genero_Especie varchar(255),
@@ -139,12 +147,12 @@ const TableCreationDB = [
       );`,
 
   `CREATE TABLE FES6 (
-        id int PRIMARY KEY,
-        FEST1_ID varchar(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+        FEST1_ID varchar(10)
       );`,
 
   `CREATE TABLE FES6_2 (
-        id int PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
         FEST6_ID int,
         No int,
         Genero_Especie varchar(255),
@@ -165,13 +173,13 @@ const TableCreationDB = [
 ];
 
 const foreingKeys = [
-  `ALTER TABLE FES2 ADD FOREIGN KEY (FES1_ID) REFERENCES FES1 (CVE_INC);`,
+  `ALTER TABLE FES2 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (CVE_INC);`,
   `ALTER TABLE FES2_TR ADD FOREIGN KEY (FES2_ID) REFERENCES FES2 (id);`,
   `ALTER TABLE FES2_3 ADD FOREIGN KEY (FEST2_ID) REFERENCES FES2 (id);`,
-  `ALTER TABLE FES3 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (id);`,
-  `ALTER TABLE FES4 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (id);`,
-  `ALTER TABLE FES5 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (id);`,
-  `ALTER TABLE FES6 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (id);`,
+  `ALTER TABLE FES3 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (CVE_INC);`,
+  `ALTER TABLE FES4 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (CVE_INC);`,
+  `ALTER TABLE FES5 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (CVE_INC);`,
+  `ALTER TABLE FES6 ADD FOREIGN KEY (FEST1_ID) REFERENCES FES1 (CVE_INC);`,
   `ALTER TABLE FES3_2 ADD FOREIGN KEY (FEST3_ID) REFERENCES FES3 (id);`,
   `ALTER TABLE FES4_2 ADD FOREIGN KEY (FES4_ID) REFERENCES FES4 (id);`,
   `ALTER TABLE FES5_2 ADD FOREIGN KEY (FES5_ID) REFERENCES FES5 (id);`,
@@ -199,6 +207,7 @@ export const initializeDatabase = () => {
       });
   });
 };
+
 // Function to insert an item
 export const insertItem = (tableName, data) => {
     // Construir las partes de la consulta SQL
@@ -249,7 +258,7 @@ export const getItems = async (table, columns) => {
 export const getItembyId = async (table, columns, column_id, id) => {
   // Ensure the ID value is properly quoted if it is a string
   const quotedId = typeof id === 'string' ? `'${id}'` : id;
-  console.log(`SELECT ${columns} FROM ${table} WHERE ${column_id} = ${quotedId}`);
+  // console.log(`SELECT ${columns} FROM ${table} WHERE ${column_id} = ${quotedId}`);
   
   const columnsToSelect = columns.length > 0 ? columns.join(', ') : '*';
 
@@ -295,6 +304,53 @@ export const updateItem = (table, data, id, column_id) => {
       [...values, id],
       () => console.log('Item updated successfully'),
       (_, error) => console.log('Error updating item', error)
+    );
+  });
+}
+
+
+import * as FileSystem from 'expo-file-system';
+import { SQLiteDatabase, openDatabase } from 'expo-sqlite';
+
+// Asumiendo que 'mi-database.db' es el nombre de tu base de datos
+const dbPath = `${FileSystem.documentDirectory}SQLite/Forestales.db`;
+
+export const eliminarBaseDeDatos = async () => {
+  try {
+    await FileSystem.deleteAsync(dbPath);
+    console.log('Base de datos eliminada con éxito.');
+  } catch (e) {
+    console.error('Hubo un error al eliminar la base de datos:', e);
+  }
+};
+
+
+export const CreateFS_Connected = (tableName, FS1_ID, placeholders) => {
+  // Consulta para verificar si ya existe un registro con el mismo FEST1_ID
+  const query_check_existence = `SELECT * FROM ${tableName} WHERE FEST1_ID = ?`;
+  values = [FS1_ID]
+  db.transaction(tx => {
+    // Primero, verificamos la existencia de un registro
+    tx.executeSql(
+      query_check_existence,
+      [FS1_ID],
+      (_, { rows }) => {
+        // Si no hay registros, procedemos a insertar uno nuevo
+        if (rows.length === 0) {
+          // Prepara la consulta para insertar el nuevo registro
+          const query_insert = `INSERT INTO ${tableName} (FEST1_ID) VALUES (${placeholders})`;
+
+          tx.executeSql(
+            query_insert,
+            values,
+            () => console.log('Item inserted successfully'),
+            (_, error) => console.log('Error inserting item', error)
+          );
+        } else {
+          console.log('Record already exists with FEST1_ID:', FS1_ID);
+        }
+      },
+      (_, error) => console.log('Error checking existence', error)
     );
   });
 }

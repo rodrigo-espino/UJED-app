@@ -5,7 +5,7 @@ import data from "../datos_prueba.json";
 import { Layout } from "../components/Layout";
 import { BottomMenu } from "../components/BottomMenu";
 import { useNavigation } from "@react-navigation/native";
-import { getItems, truncateTable } from "../components/LocalDB/DB";
+import { getItems, truncateTable, eliminarBaseDeDatos, initializeDatabase } from "../components/LocalDB/DB";
 const HomeScreen = () => {
   const navigation = useNavigation();
   
@@ -16,9 +16,13 @@ const HomeScreen = () => {
   };
 
   const deleteInfo = () => {
-    truncateTable("FES1");
+    eliminarBaseDeDatos()
     console.log("delete");
   };
+
+  useEffect(() => {
+    initializeDatabase()
+  }, []);
   return (
     <Layout>
       <TextInput placeholder="Buscar..." clearButtonMode="while-editing" />
