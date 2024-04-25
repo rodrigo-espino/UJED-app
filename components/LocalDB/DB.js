@@ -79,6 +79,7 @@ const TableCreationDB = [
         Cob_SUE int,
         Cob_ROE int,
         Cob_CEN int,
+        Cob_FER int,
         CobSev_0 int,
         CobSev_1 int,
         CobSev_2 int,

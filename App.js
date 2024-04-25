@@ -14,9 +14,11 @@ import FS3  from './screens/FS3'
 import { initializeDatabase } from "./components/LocalDB/DB";
 
 import { FS1Provider } from "./components/FS1Context";
-import * as FileSystem from "expo-file-system";
 import * as FileSystem from 'expo-file-system';
 import FS3_form from "./screens/FS3_form";
+import FS6_form from "./screens/FS6_form";
+import FS6 from "./screens/FS6";
+import LogIn from "./screens/LogIn";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -72,10 +74,26 @@ function FS1Stack() {
           drawerItemStyle: { display: 'none' },
         }}
       />
-      <Drawer.Screen name="FS1" component={FS1}/>
-      <Drawer.Screen name="FS2" component={FS2_1}/>
+      <Drawer.Screen
+        name="FS6_form"
+        component={FS6_form}
+        options={{
+          unmountOnBlur: true,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="FS3_form"
+        component={FS3_form}
+        options={{
+          unmountOnBlur: true,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen name="FS1_2" component={FS1}/>
+      {/** <Drawer.Screen name="FS2" component={FS2_1}/> */}
       <Drawer.Screen name="FS3" component={FS3}/>
-      <Drawer.Screen name="FS3_form" component={FS3_form}/>
+      <Drawer.Screen name="FS6" component={FS6}/>
       {/* Añade aquí más pantallas si necesitas */}
     </Drawer.Navigator>
     </FS1Provider>
@@ -92,6 +110,10 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Log in"
+          component={LogIn}
+        />
+        <Stack.Screen
           name="Inicio"
           component={HomeScreen}
           options={{
@@ -103,7 +125,6 @@ const App = () => {
           component={FS1Stack}
           options={{ headerShown: true, title: "Formulario" }}
         />
-       
         {/* Elimina la definición previa de "MyDrawer" y "FS1" aquí, ya que ahora están integradas en FS1Stack */}
       </Stack.Navigator>
     </NavigationContainer>

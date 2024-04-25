@@ -22,7 +22,7 @@ export const Wildfire_item = ({ info }) => {
           {info.Fecha} - {info.Hr_Inicio}
         </Text>
         <Text style={[styles.textBase]}>Responsable: {info.responsable}</Text>
-        <Text style={[styles.textBase, { fontSize: "25" }]}>
+        <Text style={[styles.textBase, { fontSize: 25 }]}>
           {info.CVE_INC}
         </Text>
         <Text style={[styles.textBase]}>
