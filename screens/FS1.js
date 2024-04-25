@@ -14,13 +14,17 @@ import {
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 
-import { useFS1 } from "../components/FS1Context";
+import { useFS1, useFS0 } from "../components/FS1Context";
 import { insertItem, getItembyId, updateItem } from "../components/LocalDB/DB";
 
 export const FS1 = ({ navigation, route }) => {
+  const { fs1Id, setFs1Id } = useFS1();
+  const { fs0Id, setFs0Id } = useFS0();
+  
   const [modalVisible, setModalVisible] = useState(false);
   const [infoText, setInfoText] = useState("");
   const [formData, setFormData] = useState({
+    FES0_ID: fs0Id,
     Sitio_ID: "",
     CVE_INC: "",
     CAT: "",
@@ -47,9 +51,11 @@ export const FS1 = ({ navigation, route }) => {
     CGE_CSE: "",
     CGE_CRO: "",
   });
+
+
   const [id, setId] = useState("");
   const [editing, setEditing] = useState(false);
-  const { fs1Id, setFs1Id } = useFS1();
+
 
   const getData = async (id) => {
     const res = await getItembyId("FES1", ["*"], "CVE_INC", id);

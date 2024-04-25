@@ -58,7 +58,7 @@ export const FS4_2 = ({ route }) => {
     console.log(FormData);
     if (isEditing) {
       try {
-        updateItem("FES4_2", FormData,  route.params.ID, "id");
+        updateItem("FES4_2", FormData,  route.params.id, "id");
       } catch (e) {
         console.log(e);
       }
@@ -72,6 +72,15 @@ export const FS4_2 = ({ route }) => {
     }
   };
   
+  useEffect(() => {
+      
+    if (route.params.id) {
+      setisEditing(true);
+      getItembyId("FES4_2", ["*"], "id", route.params.id).then((res) => {
+        setFormData(res[0]);
+      });
+    }
+  }, []);
 
   return (
     <KeyboardAvoidingView
@@ -93,7 +102,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Subsitio", text)}
               keyboardType="decimal-pad"
-              value = {FormData.SubSitio}
+              value = {FormData.Subsitio.toString()}
             />
           </View>
         </View>
@@ -109,7 +118,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("No", text)}
               keyboardType="decimal-pad"
-              value = {FormData.No}
+              value = {FormData.No.toString()}
             />
           </View>
         </View>
@@ -150,7 +159,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("FRE", text)}
               keyboardType="decimal-pad"
-              value = {FormData.FRE}
+              value = {FormData.FRE.toString()}
             />
           </View>
         </View>
@@ -174,7 +183,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("CAP", text)}
               keyboardType="decimal-pad"
-              value = {FormData.CAP}
+              value = {FormData.CAP.toString()}
             />
           </View>
         </View>
@@ -237,7 +246,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_SBQ", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_SBQ}
+              value={FormData.Cob_SBQ.toString()}
             />
           </View>
         </View>
@@ -261,7 +270,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_REG", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_REG}
+              value={FormData.Cob_REG.toString()}
             />
           </View>
         </View>
@@ -288,7 +297,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_HER", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_HER}
+              value={FormData.Cob_HER.toString()}
             />
           </View>
         </View>
@@ -312,7 +321,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_HOJ", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_HOJ}
+              value={FormData.Cob_HOJ.toString()}
 
             />
           </View>
@@ -340,7 +349,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_SUE", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_SUE}
+              value={FormData.Cob_SUE.toString()}
 
             />
           </View>
@@ -357,7 +366,7 @@ export const FS4_2 = ({ route }) => {
               placeholder="0"
               onChangeText={(text) => handleInputChange("Cob_ROE", text)}
               keyboardType="decimal-pad"
-              value={FormData.Cob_ROE}
+              value={FormData.Cob_ROE.toString()}
             />
           </View>
         </View>
@@ -383,7 +392,7 @@ export const FS4_2 = ({ route }) => {
           style={styles.input}
           onChangeText={(text) => handleInputChange("HHT", text)}
           keyboardType="decimal-pad"
-          value={FormData.HHT}
+          value={FormData.HHT.toString()}
           // value={value}
         />
       </View>
@@ -413,7 +422,8 @@ export const FS4_2 = ({ route }) => {
             setModalVisible={setModalVisible}
             infoText={infoText}
           />
-          <View style={styles.buttonContainer}>
+          {!isEditing ? (
+            <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.button}>
                 <Text>Guardar y Continuar</Text>
               </TouchableOpacity>
@@ -422,6 +432,17 @@ export const FS4_2 = ({ route }) => {
                 <Text>Guardar</Text>
               </TouchableOpacity>
             </View>
+          ) : (
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.button}>
+                <Text>Actualizar y Continuar</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Text>Actualizar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
     </ScrollView>
     </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
