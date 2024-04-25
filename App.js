@@ -10,6 +10,18 @@ import { FS22 } from "./screens/FS2_2";
 import { FS23 } from "./screens/FS2_3";
 import { FS4_1 } from "./screens/FS4_1";
 import { FS4_2 } from "./screens/FS4_2";
+
+import { FS2_1 } from "./screens/FS2_1";
+import FS3  from './screens/FS3'
+import { initializeDatabase } from "./components/LocalDB/DB";
+
+import { FS1Provider } from "./components/FS1Context";
+import * as FileSystem from 'expo-file-system';
+import FS3_form from "./screens/FS3_form";
+import FS6_form from "./screens/FS6_form";
+import FS6 from "./screens/FS6";
+import LogIn from "./screens/LogIn";
+
 import { FS5_1 } from "./screens/FS5_1";
 import { FS5_2 } from "./screens/FS5_2";
 import { FS0 } from "./screens/FS0";
@@ -60,6 +72,39 @@ function FS1Stack() {
             }}
           />
 
+
+<Drawer.Screen
+        name="FS4_2"
+        component={FS4_2}
+        options={{
+          unmountOnBlur: true,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="FS6_form"
+        component={FS6_form}
+        options={{
+          unmountOnBlur: true,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="FS3_form"
+        component={FS3_form}
+        options={{
+          unmountOnBlur: true,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen name="FS1_2" component={FS1}/>
+      {/** <Drawer.Screen name="FS2" component={FS2_1}/> */}
+      <Drawer.Screen name="FS3" component={FS3}/>
+      <Drawer.Screen name="FS6" component={FS6}/>
+      {/* Añade aquí más pantallas si necesitas */}
+    </Drawer.Navigator>
+    </FS1Provider>
+
           <Drawer.Screen name="FS5" component={FS5_1} />
 
           <Drawer.Screen
@@ -74,6 +119,7 @@ function FS1Stack() {
         </Drawer.Navigator>
       </FS1Provider>
     </FS0Provider>
+
   );
 }
 
@@ -85,6 +131,27 @@ const App = () => {
   }, []);
   return (
     <NavigationContainer>
+
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Log in"
+          component={LogIn}
+        />
+        <Stack.Screen
+          name="Inicio"
+          component={HomeScreen}
+          options={{
+            headerStyle: { backgroundColor: "#f3f4f6" },
+          }}
+        />
+        <Stack.Screen
+          name="FORM"
+          component={FS1Stack}
+          options={{ headerShown: true, title: "Formulario" }}
+        />
+        {/* Elimina la definición previa de "MyDrawer" y "FS1" aquí, ya que ahora están integradas en FS1Stack */}
+      </Stack.Navigator>
+
       <FS0Provider>
         <FS1Provider>
           <Stack.Navigator>
@@ -109,6 +176,7 @@ const App = () => {
           </Stack.Navigator>
         </FS1Provider>
       </FS0Provider>
+
     </NavigationContainer>
   );
 };

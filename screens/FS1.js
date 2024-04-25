@@ -76,8 +76,10 @@ export const FS1 = ({ navigation, route }) => {
     }
   }, []);
 
-  const handleInputChange = (name, text) =>
+  const handleInputChange = (name, text) =>{
     setFormData({ ...formData, [name]: text });
+    console.log(formData)
+  }
 
   const handleSubmit = () => {
     if (!editing) {

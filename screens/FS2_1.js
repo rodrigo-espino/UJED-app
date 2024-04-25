@@ -22,6 +22,7 @@ export const FS21 = () => {
   const navigation = useNavigation();
   const [ID, setID] = useState(0);
   const getIDFS2 = async () => {
+    
     const res = await getItembyId("FES2", ["*"], "FEST1_ID", fs1Id);
     if (res && res.length > 0) {
       const value = res[0]["id"];
@@ -154,7 +155,7 @@ export const FS21 = () => {
             textAlign: "center",
           }}
         >
-          Tipos de Combustible de 1000 hr (DAP >7.5 cm) se miden sobre los 15 m
+          Tipos de Combustible de 1000 hr (DAP > 7.5 cm) se miden sobre los 15 m
           del TR
         </Text>
         <TouchableOpacity
