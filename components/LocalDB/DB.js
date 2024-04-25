@@ -4,8 +4,16 @@ import * as SQLite from 'expo-sqlite';
 const db = SQLite.openDatabase('Forestales.db');
 
 const TableCreationDB = [
+
+  `CREATE TABLE IF NOT EXISTS FES0 (
+    CVE_INC varchar(10) primary key,
+    Alias varchar(20),
+    Descripcion varchar(255)
+    );`,
+
   `CREATE TABLE IF NOT EXISTS FES1(
     CVE_INC varchar(10) primary key,
+    FES0_ID varchar,
     Sitio_ID varchar(20),
     CAT varchar(20),
     responsable varchar(100),
@@ -126,25 +134,26 @@ const TableCreationDB = [
 
   `CREATE TABLE FES5_2(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-        FES5_ID int,
-        No int,
-        Genero_Especie varchar(255),
-        AZM int,
-        DIST float,
-        DAP float,
-        Dia_NS float,
-        Dia_OE float,
-        Alt_Htotal float,
-        Alt_Hmar float,
-        Alt_Hneg float,
-        Alt_Hcht float,
-        Sof_NEG int,
-        Sof_MAR int,
-        Sof_VER int,
-        Sof_CSH int,
-        Sof_REB int,
-        Estatus int,
-        Observaciones varchar(255)
+    FES5_ID int,
+    No int,
+    Genero_Especie varchar(255),
+    AZM int,
+    DIST float,
+    DAP float,
+    Dia_NS float,
+    Dia_OE float,
+    Alt_Htotal float,
+    Alt_Hmar float,
+    Alt_Hneg float,
+    Alt_Hcht float,
+    Alt_Hcopa float,
+    Sof_NEG int,
+    Sof_MAR int,
+    Sof_VER int,
+    Sof_CSH int,
+    Sof_REB int,
+    Estatus int,
+    Observaciones varchar(255)
       );`,
 
   `CREATE TABLE FES6 (
